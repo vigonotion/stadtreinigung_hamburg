@@ -10,7 +10,7 @@ library does not work anymore.
 Using pip:
 
 ```
-sudo pip install stadtreinigung_hamburg
+pip install stadtreinigung-hamburg
 ```
 
 ## Usage
