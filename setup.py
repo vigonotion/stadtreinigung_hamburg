@@ -22,7 +22,7 @@ VERSION = '0.1.1'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    'requests_html', 'BeautifulSoup4', 'argparse'
+    'requests_html', 'argparse'
 ]
 
 # What packages are optional?
