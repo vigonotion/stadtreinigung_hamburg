@@ -67,7 +67,7 @@ class StadtreinigungHamburg:
 
         # now fetch the actual garbage pickups
         r = session.get(F"https://www.stadtreinigung.hamburg/abfuhrkalender/?tx_srh_pickups%5Bstreet%5D={asId}&tx_srh_pickups%5Bhousenumber%5D={hnId}")
-        if(r.status_code!=200): raise Exception(F"Fetching step1 failed: Status code was {r.status_code}!")
+        if(r.status_code!=200): raise Exception(F"Fetching step2 failed: Status code was {r.status_code}!")
         
         collections = []
 
