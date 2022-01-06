@@ -86,7 +86,7 @@ class StadtreinigungHamburg:
 
         locale.setlocale(locale.LC_TIME, actualLocale)
 
-        logger.debug("succeeded with fetching and parsind!")
+        logger.debug("succeeded with fetching and parsing!")
         return collections
 
 class StreetNotFoundException(Exception):
