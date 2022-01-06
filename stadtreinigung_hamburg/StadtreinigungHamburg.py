@@ -1,5 +1,4 @@
 import logging
-import locale
 from requests_html import HTMLSession
 from datetime import datetime
 
@@ -11,9 +10,6 @@ class StadtreinigungHamburg:
         logger = logging.getLogger(__name__)
 
         session = HTMLSession()
-        session.proxies = { "https": "http://localhost:8080", }
-        session.verify = False
-        logging.basicConfig(level=logging.DEBUG)
         
         if (use_asid ^ use_hnid):
             raise Exception("Provide either asid AND hnid or provide street and street number. Mixed mode is not supported in this version!")
@@ -76,18 +72,31 @@ class StadtreinigungHamburg:
         
         rows = r.html.find("tbody tr")
         logger.debug(F"found {len(rows)} garbage collection data rows.")
-        actualLocale = locale.setlocale(locale.LC_TIME, "de_DE") 
         for tr in rows:
             content = [td.text for td in tr.find("td")]
             logger.debug(content)
-            locale
-            collection = GarbageCollection(datetime.strptime(content[0], '%a %d. %B %Y'), content[1], "interval unknown", uuid + "-" + content[1])
+            collection = GarbageCollection(parseDate(content[0]), content[1], "interval unknown", uuid + "-" + content[1])
             collections.append(collection)
-
-        locale.setlocale(locale.LC_TIME, actualLocale)
 
         logger.debug("succeeded with fetching and parsing!")
         return collections
+
+def parseDate(text):
+    text = text[3:] #remove 3 letters for abbreviated day of week
+    text = text.replace("Januar","01.")
+    text = text.replace("Februar","02.")
+    text = text.replace("März","03.")
+    text = text.replace("April","04.")
+    text = text.replace("Mai","05.")
+    text = text.replace("Juni","06.")
+    text = text.replace("Juli","07.")
+    text = text.replace("August","08.")
+    text = text.replace("September","09.")
+    text = text.replace("Oktober","10.")
+    text = text.replace("November","11.")
+    text = text.replace("Dezember","12.")
+
+    return datetime.strptime(text, '%d. %m. %Y')
 
 class StreetNotFoundException(Exception):
     pass
