@@ -35,28 +35,27 @@ class StadtreinigungHamburg:
                         'Sec-Fetch-Site': 'same-origin'
                     }
                 )
-            if(r.status_code!=200): raise Exception(F"Fetching step1 failed: Status code was {r.status_code}!")
+            if(r.status_code!=200): raise Exception(F"Fetching asId and hnId failed: Status code was {r.status_code}.")
 
             streets = r.json()
             logger.debug(F"found {len(streets)} street(s)")
 
-            if(len(streets) == 0): raise StreetNotFoundException(F"street not found with name {street}.")
+            if(len(streets) == 0): raise StreetNotFoundException(F"Street not found with name {street}.")
 
             asId = streets[0]["asId"]
             logger.debug(F"asId is {asId}")
 
             hnIds = streets[0]["hnIds"]
-            logger.debug(F"there are {len(hnIds)} numbers in this street.")
-            if(len(hnIds) == 0): raise StreetNumberNotFoundException(F"The street has no numbers?!")
+            logger.debug(F"There are {len(hnIds)} numbers in this street.")
+            if(len(hnIds) == 0): raise StreetNumberNotFoundException(F"The street has no numbers.", [])
 
             hn = next((item for item in hnIds if item["name"] == number), None)
             if(hn == None):
-                logger.info("retrying house number search with casefold!")
+                logger.info("Retrying house number search with casefold")
                 hn = next((item for item in hnIds if item["name"].casefold() == number.casefold()), None)
                 
             if(hn == None):
-                raise StreetNumberNotFoundException(F"The street has {len(hnIds)} house numbers, but {number} is none of them!")
-
+                raise StreetNumberNotFoundException(F"The street has {len(hnIds)} house numbers, but {number} is none of them.", [hn["name"] for hn in hnIds])
             hnId = hn["hnId"]
             logger.debug(F"hnId is {hnId}")
         
@@ -74,9 +73,10 @@ class StadtreinigungHamburg:
         logger.debug(F"found {len(rows)} garbage collection data rows.")
         for tr in rows:
             content = [td.text for td in tr.find("td")]
-            logger.debug(content)
-            collection = GarbageCollection(parseDate(content[0]), content[1], "interval unknown", uuid + "-" + content[1])
-            collections.append(collection)
+            
+            for type in content[1].split("\n"):
+                collection = GarbageCollection(parseDate(content[0]), type, "interval unknown", uuid + "-" + type)
+                collections.append(collection)
 
         logger.debug("succeeded with fetching and parsing!")
         return collections
