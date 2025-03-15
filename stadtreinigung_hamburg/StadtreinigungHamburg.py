@@ -95,6 +95,7 @@ def parseDate(text):
     text = text.replace("Oktober","10.")
     text = text.replace("November","11.")
     text = text.replace("Dezember","12.")
+    text = text.strip()
 
     return datetime.strptime(text, '%d. %m. %Y')
 
