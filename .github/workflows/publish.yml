@@ -14,19 +14,11 @@ jobs:
     
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.x'
     - name: Install uv
-      run: |
-        curl -LsSf https://astral.sh/uv/install.sh | sh
-        echo "$HOME/.cargo/bin" >> $GITHUB_PATH
-    - name: Install dependencies
-      run: |
-        uv pip install build
+      uses: astral-sh/setup-uv@v1
+    - name: Set up Python
+      run: uv python install
     - name: Build package
-      run: |
-        uv pip build
+      run: uv build
     - name: Publish package to PyPI
-      uses: pypa/gh-action-pypi-publish@release/v1
+      run: uv publish

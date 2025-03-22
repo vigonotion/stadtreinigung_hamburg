@@ -68,7 +68,7 @@ uv pip install -e .
 ### Building the package
 
 ```bash
-uv pip build
+uv build
 ```
 
 ### Publishing to PyPI
@@ -86,3 +86,10 @@ To set up trusted publishing:
    - Workflow name: Publish Python Package
 
 Once configured, creating a new release on GitHub will automatically trigger a build and publish to PyPI.
+
+For local publishing (if you have the necessary permissions):
+
+```bash
+uv build
+uv publish
+```
