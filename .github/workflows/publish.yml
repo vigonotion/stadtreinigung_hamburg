@@ -18,6 +18,12 @@ jobs:
       uses: astral-sh/setup-uv@v1
     - name: Set up Python
       run: uv python install
+    - name: Extract version from tag
+      id: get_version
+      run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+    - name: Update version in pyproject.toml
+      run: |
+        sed -i "s/^version = \".*\"/version = \"${{ steps.get_version.outputs.VERSION }}\"/" pyproject.toml
     - name: Build package
       run: uv build
     - name: Publish package to PyPI

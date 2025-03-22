@@ -87,6 +87,13 @@ To set up trusted publishing:
 
 Once configured, creating a new release on GitHub will automatically trigger a build and publish to PyPI.
 
+#### Version Management
+
+The package version is automatically set to match the GitHub release tag. When creating a new release:
+
+1. Use semantic versioning for your tag (e.g., `v1.0.0`, `v1.0.1`)
+2. The GitHub Action will extract the version number from the tag and update the package version before publishing
+
 For local publishing (if you have the necessary permissions):
 
 ```bash
