@@ -13,6 +13,12 @@ Using pip:
 pip install stadtreinigung-hamburg
 ```
 
+Using uv:
+
+```
+uv pip install stadtreinigung-hamburg
+```
+
 ## Usage
 
 After installing, use the terminal to run the program:
@@ -42,4 +48,25 @@ Or mix it:
 
 ```
 stadtreinigung_hamburg Sesamstraße --hnid 99999
+```
+
+## Development
+
+This project uses [uv](https://github.com/astral-sh/uv) for dependency management and packaging.
+
+### Setup Development Environment
+
+```bash
+# Install uv
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# Create a virtual environment and install dependencies
+uv venv
+uv pip install -e .
+```
+
+### Building the package
+
+```bash
+uv pip build
 ```

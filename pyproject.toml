@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=42", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stadtreinigung_hamburg"
+version = "0.3.1"
+description = "A library to get garbage collection dates in Hamburg."
+readme = "README.md"
+authors = [
+    {name = "Tom Schneider", email = "tom@sutomaji.net"},
+]
+license = {text = "MIT"}
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
+]
+requires-python = ">=3.6.0"
+dependencies = [
+    "requests_html",
+    "argparse",
+]
+
+[project.urls]
+Homepage = "https://github.com/vigonotion/stadtreinigung_hamburg"
+
+[project.scripts]
+stadtreinigung_hamburg = "stadtreinigung_hamburg.stadtreinigung_hamburg:main"
