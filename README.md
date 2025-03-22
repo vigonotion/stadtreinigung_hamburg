@@ -70,3 +70,19 @@ uv pip install -e .
 ```bash
 uv pip build
 ```
+
+### Publishing to PyPI
+
+This project uses GitHub Actions with trusted publishing to automatically release to PyPI when a new GitHub release is created. The workflow uses PyPI's trusted publisher mechanism, which means no API tokens need to be stored in GitHub secrets.
+
+To set up trusted publishing:
+
+1. Go to PyPI and navigate to your project
+2. Go to "Settings" > "Publishing"
+3. Add a new publisher with:
+   - Publisher: GitHub Actions
+   - Organization: your-github-username
+   - Repository: stadtreinigung_hamburg
+   - Workflow name: Publish Python Package
+
+Once configured, creating a new release on GitHub will automatically trigger a build and publish to PyPI.
