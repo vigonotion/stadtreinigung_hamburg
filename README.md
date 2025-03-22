@@ -1,6 +1,6 @@
 # Stadtreinigung Hamburg
 
-[![PyPI version](https://badge.fury.io/py/stadtreinigung-hamburg.svg)](https://pypi.org/project/stadtreinigung-hamburg/)
+[![PyPI](https://img.shields.io/pypi/v/stadtreinigung-hamburg.svg?logo=python&logoColor=white)](https://pypi.org/project/stadtreinigung-hamburg/)
 
 This library provides access to garbage collection dates
 in Hamburg. It scrapes the official website of Stadtreinigung Hamburg,
