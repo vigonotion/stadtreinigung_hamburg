@@ -1,6 +1,7 @@
 import logging
 from requests_html import HTMLSession
 from datetime import datetime
+import dateutil.parser
 
 from .GarbageCollection import GarbageCollection
 
@@ -82,22 +83,7 @@ class StadtreinigungHamburg:
         return collections
 
 def parseDate(text):
-    text = text[3:] #remove 3 letters for abbreviated day of week
-    text = text.replace("Januar","01.")
-    text = text.replace("Februar","02.")
-    text = text.replace("März","03.")
-    text = text.replace("April","04.")
-    text = text.replace("Mai","05.")
-    text = text.replace("Juni","06.")
-    text = text.replace("Juli","07.")
-    text = text.replace("August","08.")
-    text = text.replace("September","09.")
-    text = text.replace("Oktober","10.")
-    text = text.replace("November","11.")
-    text = text.replace("Dezember","12.")
-    text = text.strip()
-
-    return datetime.strptime(text, '%d. %m. %Y')
+    return dateutil.parser.parse(text)
 
 class StreetNotFoundException(Exception):
     pass
