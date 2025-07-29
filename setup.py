@@ -22,7 +22,7 @@ VERSION = '0.3.1'
 
 # What packages are required for this module to be executed?
 REQUIRED = [
-    'requests_html', 'argparse'
+    'requests_html', 'argparse', 'dateparser'
 ]
 
 # What packages are optional?

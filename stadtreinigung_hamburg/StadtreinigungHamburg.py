@@ -1,6 +1,5 @@
 import logging
 from requests_html import HTMLSession
-from datetime import datetime
 import dateparser
 
 from .GarbageCollection import GarbageCollection
