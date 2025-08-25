@@ -1,7 +1,6 @@
 import logging
 from requests_html import HTMLSession
-from datetime import datetime
-import dateutil.parser
+import dateparser
 
 from .GarbageCollection import GarbageCollection
 
@@ -83,7 +82,7 @@ class StadtreinigungHamburg:
         return collections
 
 def parseDate(text):
-    return dateutil.parser.parse(text)
+    return dateparser.parse(text, languages=['de', 'en'])
 
 class StreetNotFoundException(Exception):
     pass
