@@ -17,7 +17,7 @@ DESCRIPTION = 'A library to get garbage collection dates in Hamburg.'
 URL = 'https://github.com/vigonotion/stadtreinigung_hamburg'
 EMAIL = 'tom@sutomaji.net'
 AUTHOR = 'Tom Schneider'
-REQUIRES_PYTHON = '>=3.6.0'
+REQUIRES_PYTHON = '>=3.8.0'
 VERSION = '0.3.1'
 
 # What packages are required for this module to be executed?
@@ -117,7 +117,7 @@ setup(
         'License :: OSI Approved :: MIT License',
         'Programming Language :: Python',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy'
     ],
